@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Предварительный план автоматизации для малого бизнеса" />
+    <title>AI-калькулятор автоматизации бизнеса</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="На главную">
+        <span class="brand__mark">AI</span>
+        <span>Автоматизация</span>
+      </a>
+      <span class="header-badge">Бесплатный анализ</span>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero__content">
+          <div class="eyebrow"><span></span> Для малого бизнеса</div>
+          <h1>Что можно автоматизировать <em>в вашем бизнесе?</em></h1>
+          <p>Ответьте на несколько вопросов и получите предварительный план автоматизации</p>
+          <button class="button button--primary button--large" id="startButton" type="button">
+            Начать анализ <span aria-hidden="true">→</span>
+          </button>
+          <div class="hero__meta">
+            <span>✓ 2–3 минуты</span><span>✓ Без регистрации</span><span>✓ Результат сразу</span>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="orbit orbit--one"></div><div class="orbit orbit--two"></div>
+          <div class="visual-card visual-card--main">
+            <div class="visual-card__icon">✦</div><b>Умный анализ</b><small>Подберём сценарий под ваш бизнес</small>
+          </div>
+          <div class="visual-card visual-card--mini visual-card--top">↗ <b>−40%</b><small>рутины</small></div>
+          <div class="visual-card visual-card--mini visual-card--bottom">◷ <b>12 ч</b><small>экономии</small></div>
+        </div>
+      </section>
+
+      <section class="quiz hidden" id="quiz" aria-live="polite">
+        <div class="quiz__top">
+          <div><span class="quiz__label">AI-анализ бизнеса</span><h2 id="questionTitle"></h2></div>
+          <div class="progress-info"><b id="stepNumber">1 / 6</b><span>готово <b id="progressPercent">16%</b></span></div>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <p class="quiz__hint" id="questionHint"></p>
+        <form id="questionForm">
+          <div class="options" id="options"></div>
+          <textarea id="problemInput" class="problem-input hidden" rows="7" maxlength="700" placeholder="Например: менеджеры долго отвечают клиентам, заявки теряются, а отчёты приходится собирать вручную..."></textarea>
+          <div class="quiz__actions">
+            <button class="button button--secondary" id="backButton" type="button">← Назад</button>
+            <button class="button button--primary" id="nextButton" type="submit">Продолжить <span>→</span></button>
+          </div>
+          <p class="validation" id="validation" role="alert"></p>
+        </form>
+      </section>
+
+      <section class="results hidden" id="results" aria-live="polite">
+        <div class="results__heading"><div class="success-icon">✓</div><div><span class="quiz__label">Анализ завершён</span><h2>Ваш план автоматизации</h2><p>Предварительная конфигурация на основе ваших ответов</p></div></div>
+        <div class="results-grid">
+          <article class="result-card result-card--wide"><div class="card-number">01</div><div><h3>Что стоит автоматизировать</h3><ul class="recommendations" id="automationList"></ul></div></article>
+          <article class="result-card result-card--dark"><div class="card-number">02</div><h3>Рекомендуемая схема</h3><div class="scheme" id="scheme"></div></article>
+          <article class="result-card"><div class="card-number">03</div><h3>Инструменты</h3><div class="tools" id="tools"></div></article>
+          <article class="result-card"><div class="card-number">04</div><h3>Оценка проекта</h3><div class="estimate"><span>Сложность</span><b id="complexity"></b><span>Ориентировочный бюджет</span><strong id="budget"></strong></div></article>
+          <article class="result-card result-card--wide"><div class="card-number">05</div><div><h3>Что получит бизнес</h3><div class="benefits" id="benefits"></div></div></article>
+          <article class="result-card result-card--wide"><div class="card-number">06</div><div><h3>Почему именно такая схема</h3><ul class="explanations" id="explanations"></ul></div></article>
+          <article class="result-card"><div class="card-number">07</div><h3>Что внедрить первым этапом</h3><ol class="mvp-list" id="mvpList"></ol></article>
+          <article class="result-card"><div class="card-number">08</div><h3>Что можно добавить позже</h3><ul class="later-list" id="laterList"></ul></article>
+        </div>
+        <div class="result-cta"><div><h3>Готовы перейти к внедрению?</h3><p>Получите детальный план с этапами, рисками и архитектурой решения.</p></div><button class="button button--light" id="specButton" type="button">Получить подробное техническое задание →</button></div>
+        <div class="result-actions" aria-label="Действия с результатом">
+          <button class="button button--secondary" id="copyButton" type="button">⧉ Скопировать результат</button>
+          <button class="button button--secondary" id="printButton" type="button">↓ Скачать результат в PDF</button>
+        </div>
+        <p class="action-status" id="actionStatus" role="status"></p>
+        <button class="restart" id="restartButton" type="button">↻ Пройти анализ заново</button>
+      </section>
+    </main>
+
+    <dialog class="spec-modal" id="specModal" aria-labelledby="specTitle">
+      <div class="spec-modal__header">
+        <div><span class="quiz__label">Автоматически сформировано</span><h2 id="specTitle">Техническое задание</h2></div>
+        <button class="modal-close" id="closeSpecButton" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div class="spec-document" id="specDocument"></div>
+      <div class="spec-modal__actions">
+        <button class="button button--secondary" id="copySpecButton" type="button">⧉ Скопировать ТЗ</button>
+        <button class="button button--primary" id="printSpecButton" type="button">↓ Сохранить в PDF</button>
+      </div>
+    </dialog>
+
+    <footer><span>AI-калькулятор автоматизации бизнеса</span><span>Ваши ответы хранятся только в браузере</span></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
