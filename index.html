@@ -65,12 +65,33 @@
           <article class="result-card"><div class="card-number">03</div><h3>Инструменты</h3><div class="tools" id="tools"></div></article>
           <article class="result-card"><div class="card-number">04</div><h3>Оценка проекта</h3><div class="estimate"><span>Сложность</span><b id="complexity"></b><span>Ориентировочный бюджет</span><strong id="budget"></strong></div></article>
           <article class="result-card result-card--wide"><div class="card-number">05</div><div><h3>Что получит бизнес</h3><div class="benefits" id="benefits"></div></div></article>
+          <article class="result-card result-card--wide"><div class="card-number">06</div><div><h3>Почему именно такая схема</h3><div class="result-text" id="rationale"></div></div></article>
+          <article class="result-card"><div class="card-number">07</div><h3>Что внедрить первым этапом</h3><ul class="stage-list" id="firstStage"></ul></article>
+          <article class="result-card"><div class="card-number">08</div><h3>Что можно добавить позже</h3><ul class="stage-list stage-list--later" id="laterStage"></ul></article>
         </div>
         <div class="result-cta"><div><h3>Готовы перейти к внедрению?</h3><p>Получите детальный план с этапами, сроками и архитектурой решения.</p></div><button class="button button--light" id="specButton" type="button">Получить подробное техническое задание →</button></div>
-        <div class="notice hidden" id="notice" role="status">На следующем этапе здесь будет AI, который автоматически сформирует техническое задание</div>
+        <div class="document-actions" aria-label="Действия с результатом">
+          <button class="button button--secondary" id="copyResultButton" type="button">Скопировать результат</button>
+          <button class="button button--secondary" id="printResultButton" type="button">Скачать результат в PDF</button>
+          <span class="action-status" id="resultStatus" role="status" aria-live="polite"></span>
+        </div>
         <button class="restart" id="restartButton" type="button">↻ Пройти анализ заново</button>
       </section>
     </main>
+
+    <div class="modal hidden" id="specModal" role="dialog" aria-modal="true" aria-labelledby="specTitle">
+      <div class="modal__backdrop" data-close-modal></div>
+      <section class="modal__content" id="specDocument" tabindex="-1">
+        <button class="modal__close" id="closeSpecButton" type="button" aria-label="Закрыть">×</button>
+        <div class="spec-heading"><span class="quiz__label">Техническое задание</span><h2 id="specTitle">План автоматизации бизнеса</h2><p>Сформировано на основе ответов в калькуляторе</p></div>
+        <div class="spec-sections" id="specSections"></div>
+        <div class="document-actions modal__actions">
+          <button class="button button--primary" id="copySpecButton" type="button">Скопировать ТЗ</button>
+          <button class="button button--secondary" id="printSpecButton" type="button">Скачать ТЗ в PDF</button>
+          <span class="action-status" id="specStatus" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+    </div>
 
     <footer><span>AI-калькулятор автоматизации бизнеса</span><span>Ваши ответы хранятся только в браузере</span></footer>
     <script src="script.js"></script>
